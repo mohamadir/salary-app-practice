@@ -6,47 +6,10 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="@mipmap/config"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mohamdib.filestutorial.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="47dp"
-        android:id="@+id/tvDate"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="18dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:id="@+id/textView"
-        android:layout_below="@+id/tvDate"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="לחיצה ארוכה להחתמה"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="23dp"
-        android:layout_marginTop="61dp" />
-
-    <Button
-        android:text=""
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/fingerprinticon"
-        android:id="@+id/btFinger"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="25dp" />
 
     <Button
         android:text=""
@@ -60,12 +23,86 @@
 
     <TextView
         android:text="לרשימת שעות"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btNext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
         android:id="@+id/textView5" />
+
+    <Button
+        android:text=""
+        android:layout_width="150dp"
+        android:background="@mipmap/fingerprint1"
+        android:id="@+id/btFinger"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/pdf"
+        android:id="@+id/btPdf"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/tvTime" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/aboutus"
+        android:id="@+id/button2"
+        android:layout_alignTop="@+id/btSettings"
+        android:layout_toEndOf="@+id/btSettings" />
+
+    <Button
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/settings"
+        android:id="@+id/btSettings"
+        android:layout_alignTop="@+id/btPdf"
+        android:layout_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:textColor="#FFFFFF"
+        android:id="@+id/textView"
+        android:text=""
+        android:layout_below="@+id/btFinger"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTime"
+        android:textSize="25sp"
+        android:layout_above="@+id/btFinger"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDate"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:text="asdasd"
+        android:layout_above="@+id/tvTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/button2"
+        android:id="@+id/tvIn" />
 
 
 </RelativeLayout>

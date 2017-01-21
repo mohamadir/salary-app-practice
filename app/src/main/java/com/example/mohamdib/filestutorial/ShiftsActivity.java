@@ -8,8 +8,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.Buffer;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ShiftsActivity extends AppCompatActivity  {
@@ -17,6 +27,8 @@ public class ShiftsActivity extends AppCompatActivity  {
     private static final int SHAKE_THRESHOLD = 800;
     ListView lv;
     ArrayList<String> shifts;
+    ArrayList<String> shiftsFromFile;
+
     ArrayAdapter<String> adapter;
 
     @Override
@@ -26,14 +38,37 @@ public class ShiftsActivity extends AppCompatActivity  {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_shifts);
+        shiftsFromFile=new ArrayList<String>();
         lv=(ListView)findViewById(R.id.listView);
+        try {
+            readFromFile();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Intent i = getIntent();
         shifts = i.getStringArrayListExtra("shifts");
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,shifts);
         lv.setAdapter(adapter);
 
 
+    }
 
+    private void readFromFile() throws IOException {
+        String line;
+        FileInputStream fileInputStream=openFileInput("salary.txt");
+        InputStreamReader  inputStreamReader=new InputStreamReader(fileInputStream);
+       //URL url = getClass().getResource("salary.txt");
+
+        //Toast.makeText(ShiftsActivity.this,""+url.toString(), Toast.LENGTH_LONG).show();
+        BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+        StringBuffer stringBuffer=new StringBuffer();
+        while((line=bufferReader.readLine())!=null)
+        {
+            shiftsFromFile.add(line);
+        }
     }
 
 
