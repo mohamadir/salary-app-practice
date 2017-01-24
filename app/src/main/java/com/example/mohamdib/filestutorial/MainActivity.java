@@ -1,14 +1,17 @@
 package com.example.mohamdib.filestutorial;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,6 +20,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import org.w3c.dom.Document;
 
@@ -39,9 +47,7 @@ public class MainActivity extends AppCompatActivity{
     TextView tvDate,tvRes,tvTime,tvIn;
     String timeIn,timeOut;
     String lines;
-    Document doc;
     String outPath;
-
     Calendar c;
     boolean ifIn;
     String temp;// to add to the arrayList
@@ -66,8 +72,11 @@ public class MainActivity extends AppCompatActivity{
         btPdf=(Button )findViewById(R.id.btPdf);
         btPdf.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                createPdf();
+            public void onClick(View v)
+            {
+            //    createandDisplayPdf("hi hi hi hi ");
+                createPdf("hi hi hi \n hi hi hi ");
+       //         viewPdf();
             }
         });
 
@@ -216,6 +225,7 @@ public class MainActivity extends AppCompatActivity{
 
                 return true;
             }
+
         });
     }
 
@@ -234,10 +244,14 @@ public class MainActivity extends AppCompatActivity{
         //    lines+=temp;
             fileOutputStream.write(temp.getBytes());
             fileOutputStream.close();
+            Toast.makeText(MainActivity.this, "קובץ נוצר",
+                    Toast.LENGTH_LONG).show();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+
         } catch (IOException e) {
+
             e.printStackTrace();
         }
     }
@@ -255,5 +269,96 @@ public class MainActivity extends AppCompatActivity{
             stringBuffer.append(line+"\n");
         }
       //  lines=line;
+
+    }
+
+    public void createPdf(String text)
+    {
+        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+
+        String outPath= Environment.getExternalStorageDirectory().getAbsolutePath().toString()+"/mypdf.pdf";
+        Toast.makeText(MainActivity.this, ""+outPath,
+                Toast.LENGTH_LONG).show();
+        try{
+
+            PdfWriter.getInstance(doc,new FileOutputStream(outPath));
+            doc.open();
+            doc.add(new Paragraph(text));
+            doc.close();
+            Toast.makeText(MainActivity.this, "file created",
+                    Toast.LENGTH_LONG).show();
+
+
+        }
+        catch(DocumentException e)
+        {
+            Toast.makeText(MainActivity.this, "document exep",
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            Toast.makeText(MainActivity.this, "file not found",
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+    /// ----------------------------------------------    FROM STACKOVERFLOW ----------------------------
+   /* public void createandDisplayPdf(String text) {
+
+        com.itextpdf.text.Document doc = new com.itextpdf.text.Document();
+
+        try {
+            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Dir";
+
+            File dir = new File(path);
+            if(!dir.exists())
+                dir.mkdirs();
+
+            File file = new File(dir, "newFile.pdf");
+            FileOutputStream fOut = new FileOutputStream(file);
+
+            PdfWriter.getInstance(doc, fOut);
+
+            //open the document
+            doc.open();
+
+            Paragraph p1 = new Paragraph(text);
+            //Font paraFont= new Font(Font.COURIER);
+            p1.setAlignment(Paragraph.ALIGN_CENTER);
+            //p1.setFont(paraFont);
+
+            //add paragraph to document
+            doc.add(p1);
+
+        } catch (DocumentException de) {
+            Log.e("PDFCreator", "DocumentException:" + de);
+        } catch (IOException e) {
+            Log.e("PDFCreator", "ioException:" + e);
+        } finally {
+            doc.close();
+        }
+
+        viewPdf("newFile.pdf", "Dir");
+    }
+*/
+    private void viewPdf() {
+
+        File pdfFile = new File(getFilesDir()+"/mypdf.pdf");
+        Uri path = Uri.fromFile(pdfFile);
+
+        // Setting the intent for pdf reader
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+        pdfIntent.setDataAndType(path, "application/pdf");
+        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        try {
+            startActivity(pdfIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(MainActivity.this, "Can't read pdf file", Toast.LENGTH_SHORT).show();
+        }
     }
 }

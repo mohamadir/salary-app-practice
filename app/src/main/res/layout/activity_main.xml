@@ -40,30 +40,6 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@mipmap/pdf"
-        android:id="@+id/btPdf"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/tvTime" />
-
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@mipmap/aboutus"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/btSettings"
-        android:layout_toEndOf="@+id/btSettings" />
-
-    <Button
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:background="@mipmap/settings"
-        android:id="@+id/btSettings"
-        android:layout_alignTop="@+id/btPdf"
-        android:layout_toEndOf="@+id/textView5" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,6 +79,31 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/button2"
         android:id="@+id/tvIn" />
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/pdf"
+        android:id="@+id/btPdf"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/btNext" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/aboutus"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/btFinger"
+        android:layout_marginStart="14dp" />
+
+    <Button
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/settings"
+        android:id="@+id/btSettings"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView5" />
 
 
 </RelativeLayout>

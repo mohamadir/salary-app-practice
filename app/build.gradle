@@ -25,6 +25,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:23.2.1'
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
+   // compile 'com.itextpdf:itextg:5.5.10'
     testCompile 'junit:junit:4.12'
   //  compile files('E:/ANDROID STUDIO MATERIAL DESIGN/FilesTutorial/.idea/libraries/itextg-5.5.10-javadoc.jar')
 }
